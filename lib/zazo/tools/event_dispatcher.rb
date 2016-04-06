@@ -1,59 +1,77 @@
 require 'aws-sdk'
 
-module Zazo
-  module Tools
-    module EventDispatcher
+module Zazo::Tools::EventDispatcher
+  class Config
+    attr_accessor :send_message_enabled, :queue_url, :logger
+
+    def initialize
       @send_message_enabled = true
+    end
+  end
 
-      def self.queue_url
-        #Figaro.env.sqs_queue_url
-        'https://zazo-sqsworker.dev/'
-      end
+  class << self
+    attr_reader :config
 
-      def self.sqs_client
-        @sqs_client ||= Aws::SQS::Client.new
-      end
+    #
+    # configuration
+    #
 
-      def self.enable_send_message!
-        #Rails.logger.info "[#{self}] Enabling #{self}"
-        @send_message_enabled = true
-      end
+    def configure
+      @config ||= Config.new
+      yield(config)
+    end
 
-      def self.disable_send_message!
-        #Rails.logger.info "[#{self}] Disabling #{self}"
-        @send_message_enabled = false
-      end
+    def enable_send_message!
+      config.send_message_enabled = true
+    end
 
-      def self.send_message_enabled?
-        @send_message_enabled
-      end
+    def disable_send_message!
+      config.send_message_enabled = false
+    end
 
-      def self.with_state(state)
-        original = send_message_enabled?
-        #Rails.logger.debug "[#{self}] #{original} => #{state}"
-        @send_message_enabled = state
-        yield if block_given?
-        #Rails.logger.debug "[#{self}] #{state} => #{original}"
-        @send_message_enabled = original
-      end
+    def send_message_enabled?
+      config.send_message_enabled
+    end
 
-      def self.build_message(name, params = {})
-        name = name.split(':') if name.is_a?(String)
-        { name: name,
-          triggered_by: 'zazo:api',
-          triggered_at: Time.now.utc }.merge(params)
-      end
+    #
+    # emitting
+    #
 
-      def self.emit(name, params = {})
-        message = build_message(name, params)
-        #Rails.logger.info "[#{self}] Attemt to sent message to SQS queue #{queue_url}: #{message}"
-        if send_message_enabled?
-          sqs_client.send_message(queue_url: queue_url, message_body: message.to_json)
-        else
-          #Rails.logger.info "[#{self}] Message not sent to SQS because #{self} is disabled"
-          {}
-        end
+    def sqs_client
+      @sqs_client ||= Aws::SQS::Client.new
+    end
+
+    def with_state(state)
+      original = send_message_enabled?
+      log_message("#{original} => #{state}")
+      config.send_message_enabled = state
+      yield if block_given?
+      log_message("#{state} => #{original}")
+      config.send_message_enabled = original
+    end
+
+    def build_message(name, params = {})
+      name = name.split(':') if name.is_a?(String)
+      { name: name,
+        triggered_by: 'zazo:api',
+        triggered_at: Time.now.utc }.merge(params)
+    end
+
+    def emit(name, params = {})
+      message = build_message(name, params)
+      log_message("attemt to sent message to SQS queue #{config.queue_url}: #{message}")
+      if send_message_enabled?
+        sqs_client.send_message(queue_url: config.queue_url, message_body: message.to_json)
+      else
+        log_message("message not sent to SQS because #{self} is disabled")
+        {}
       end
+    end
+
+    private
+
+    def log_message(message)
+      config.logger.info("[#{self}] #{message}") if config.logger
     end
   end
 end

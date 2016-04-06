@@ -1,5 +1,10 @@
 require 'spec_helper'
 
+Zazo::Tools::EventDispatcher.configure do |config|
+  ENV['AWS_REGION'] = 'us-west-1'
+  config.queue_url = 'https://zazo-sqsworker.dev/'
+end
+
 RSpec.describe Zazo::Tools::EventDispatcher do
   describe '.emit', event_dispatcher: true do
     let(:name) { %w(event_dispatcher test) }
@@ -7,7 +12,7 @@ RSpec.describe Zazo::Tools::EventDispatcher do
     subject { described_class.emit(name, params) }
 
     around do |example|
-      erb = { queue_url: described_class.queue_url,
+      erb = { queue_url: described_class.config.queue_url,
               region: described_class.sqs_client.config.region,
               access_key: described_class.sqs_client.config.credentials.access_key_id }
       VCR.use_cassette('sqs_send_message', erb: erb) { example.run }
