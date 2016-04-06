@@ -1,5 +1,8 @@
 # Changelog
 
+### v0.1.2
+- :hammer: Fixed `EventDispatcher` component loading
+
 ### v0.1.1
 - :hammer: Moved `aws-sdk` from development dependency to production
 
