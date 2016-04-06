@@ -4,7 +4,7 @@
 
 Before configuration you should definitely setup **AWS_REGION** (e.g. us-west-1) environment variable.
 
-```
+``` ruby
 # you need to configure component
 Zazo::Tools::EventDispatcher.configure do |config|
   config.send_message_enabled = true # default
