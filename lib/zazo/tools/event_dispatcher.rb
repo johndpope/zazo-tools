@@ -1,10 +1,13 @@
+require 'aws-sdk'
+
 module Zazo
   module Tools
     module EventDispatcher
       @send_message_enabled = true
 
       def self.queue_url
-        Figaro.env.sqs_queue_url
+        #Figaro.env.sqs_queue_url
+        'https://zazo-sqsworker.dev/'
       end
 
       def self.sqs_client
@@ -36,10 +39,9 @@ module Zazo
 
       def self.build_message(name, params = {})
         name = name.split(':') if name.is_a?(String)
-        params.reverse_merge(
-          name: name,
+        { name: name,
           triggered_by: 'zazo:api',
-          triggered_at: DateTime.now.utc)
+          triggered_at: Time.now.utc }.merge(params)
       end
 
       def self.emit(name, params = {})

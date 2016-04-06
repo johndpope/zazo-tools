@@ -1,5 +1,4 @@
 require 'spec_helper'
-require 'zazo/tools/event_dispatcher'
 
 RSpec.describe Zazo::Tools::EventDispatcher do
   describe '.emit', event_dispatcher: true do
@@ -26,12 +25,12 @@ RSpec.describe Zazo::Tools::EventDispatcher do
   describe '.build_message' do
     let(:name) { %w(zazo test) }
     let(:params) { {} }
-    let(:triggered_at) { DateTime.now.utc }
+    let(:triggered_at) { Time.now.utc }
     subject { described_class.build_message(name, params) }
 
     it do
       Timecop.freeze(triggered_at) do
-        is_expected.to eq name: %w(zazo test), triggered_by: 'zazo:api', triggered_at: DateTime.now.utc
+        is_expected.to eq name: %w(zazo test), triggered_by: 'zazo:api', triggered_at: Time.now.utc
       end
     end
 
@@ -40,7 +39,7 @@ RSpec.describe Zazo::Tools::EventDispatcher do
 
       it do
         Timecop.freeze(triggered_at) do
-          is_expected.to eq name: %w(zazo test), triggered_by: 'zazo:api', triggered_at: DateTime.now.utc
+          is_expected.to eq name: %w(zazo test), triggered_by: 'zazo:api', triggered_at: Time.now.utc
         end
       end
     end
