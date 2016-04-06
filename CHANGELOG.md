@@ -1,5 +1,8 @@
 # Changelog
 
+### next release
+- :arrow_up: Refactored configuration of `EventDispatcher`
+
 ### v0.1.2
 - :hammer: Fixed `EventDispatcher` component loading
 

@@ -16,14 +16,15 @@ module Zazo
       end
 
       class << self
-        attr_reader :config
-
         #
         # configuration
         #
 
-        def configure
+        def config
           @config ||= Config.new
+        end
+
+        def configure
           yield(config)
         end
 
