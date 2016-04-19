@@ -1,5 +1,9 @@
 # Changelog
 
+### v0.2.0
+- :bulb: Implemented `Logger` component
+- :arrow_up: Refactored configuration of `EventDispatcher`
+
 ### v0.1.2
 - :hammer: Fixed `EventDispatcher` component loading
 
