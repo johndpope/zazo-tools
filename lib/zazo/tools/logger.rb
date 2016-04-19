@@ -76,6 +76,10 @@ module Zazo
           logging(*([:debug] + args))
         end
 
+        def error(*args)
+          logging(*([:error] + args))
+        end
+
         private
 
         def logging(level, context, message, settings = {})
