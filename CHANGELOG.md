@@ -1,5 +1,8 @@
 # Changelog
 
+### v0.2.1
+- :hammer: Added environment variable to logstash logger
+
 ### v0.2.0
 - :bulb: Implemented `Logger` component
 - :arrow_up: Refactored configuration of `EventDispatcher`
