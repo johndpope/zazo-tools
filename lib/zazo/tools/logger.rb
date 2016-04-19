@@ -100,6 +100,7 @@ module Zazo
         def logging_logstash(level, tag, message)
           config.logstash_logger.send(level,
             project: config.project_name,
+            environment: config.environment,
             tag: tag,
             message: message)
         end
