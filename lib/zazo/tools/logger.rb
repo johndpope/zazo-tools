@@ -1,4 +1,4 @@
-require 'logstash-logger'
+require 'zazo/tools/logger/http'
 
 module Zazo
   module Tools
@@ -11,7 +11,7 @@ module Zazo
         attr_reader :logstash_logger
 
         attr_accessor :local_enabled, :rollbar_enabled, :logstash_enabled,
-                      :logstash_host, :logstash_port,
+                      :logstash_host, :logstash_port, :logstash_username, :logstash_password,
                       :project_name, :environment
 
         def initialize
@@ -27,10 +27,10 @@ module Zazo
         end
 
         def set_logstash_logger
-          @logstash_logger = LogStashLogger.new(
-            type: :udp,
-            host: self.logstash_host,
-            port: self.logstash_port)
+          @logstash_logger = Zazo::Tools::Logger::Http.new(
+            self.logstash_host, self.logstash_port,
+            auth: { username: self.logstash_username,
+                    password: self.logstash_password })
         end
 
         private
@@ -98,10 +98,10 @@ module Zazo
         end
 
         def logging_logstash(level, tag, message)
-          config.logstash_logger.send(level,
+          config.logstash_logger.perform_async(
             project: config.project_name,
             environment: config.environment,
-            tag: tag,
+            level: level, tag: tag,
             message: message)
         end
 
