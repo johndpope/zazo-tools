@@ -1,5 +1,8 @@
 # Changelog
 
+### v0.3.0
+- :bulb: Changed logstash logging from UDP to HTTP
+
 ### v0.2.1
 - :hammer: Added environment variable to logstash logger
 
