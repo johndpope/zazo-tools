@@ -75,6 +75,7 @@ end
 ```
 
 ``` ruby
+# app/model/user/decorators/greeter.rb
 class User::Decorators::Greeter < Zazo::Model::Decorator
   def greet
     "Hello! I'm #{name}"
