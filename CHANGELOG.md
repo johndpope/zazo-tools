@@ -1,6 +1,9 @@
 # Changelog
 
 ### 0.3.0-wip.3
+- :arrow_up: Rearranged code structure (backward compatibility is broken)
+
+### 0.3.0-wip.3
 - :bulb: Added Model::Decorator class with extension
 
 ### 0.3.0-wip.2
