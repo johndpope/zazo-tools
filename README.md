@@ -161,3 +161,25 @@ Build class by array of parts.
 ``` ruby
 Zazo::Tool::Classifier.new([:zazo, :tool, :classifier]).klass == Zazo::Tool::Classifier # => true
 ```
+
+### Zazo::Tool::ServiceApiWrapper
+
+``` ruby
+# lib/some_service_api.rb
+class SomeServiceApi < Zazo::Tool::ServiceApiWrapper
+  version  1
+  base_uri 'http://some-service.dev'
+  digest_auth 'client', 'token'
+
+  mapper filter:  { action: :get,  prefix: 'fetch/filters' },
+         create:  { action: :post },
+         default: { action: :get, prefix: '' }
+end
+```
+
+``` ruby
+SomeServiceApi.new.filter(:users)  # GET "http://some-service.dev/api/v1/fetch/filters/users"
+SomeServiceApi.new.filter(:groups) # GET "http://some-service.dev/api/v1/fetch/filters/groups"
+SomeServiceApi.new(some: 'some', params: 'params').create(:users) # POST "http://some-service.dev/api/v1/users" with params
+```
+

@@ -1,3 +1,6 @@
+require 'faraday'
+require 'faraday/digestauth'
+
 module Zazo
   module Tool
 
@@ -65,9 +68,9 @@ module Zazo
           c.request(:json)
           c.response(:json, content_type: /\bjson$/)
           c.response(:raise_error) if raise_errors?
-          c.request(:digest, auth_credentials(:name), auth_credentials(:token)) if auth_credentials(:token)
           c.adapter(Faraday.default_adapter)
-          c.use(Faraday::Response::Logger, Logger.new('log/faraday.log'))
+          credentials = auth_credentials(:token)
+          credentials && c.request(:digest, auth_credentials(:name), credentials)
         end
       end
 
