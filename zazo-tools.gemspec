@@ -1,11 +1,11 @@
 lib = File.expand_path('../lib', __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 
-require 'zazo/tools/version'
+require 'zazo/version'
 
 Gem::Specification.new do |spec|
   spec.name          = 'zazo-tools'
-  spec.version       = Zazo::Tools::VERSION
+  spec.version       = Zazo::VERSION
   spec.authors       = ['Ivan Kornilov']
   spec.email         = ['vano468@gmail.com']
   spec.summary       = 'Common components of Zazo'

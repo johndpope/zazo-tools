@@ -1,8 +1,9 @@
-require 'zazo/tools/api_controller/handle_interactor'
+require 'zazo/controller/interactions/handle_interactor'
 
 module Zazo
-  module Tools
-    module ApiController
+  module Controller
+
+    module Interactions
       def handle_interactor(type_settings, interactor, &callback)
         HandleInteractor.new(
           context: self, interactor: interactor,
@@ -15,5 +16,6 @@ module Zazo
         params.slice(*keys).merge(user: current_user) rescue {}
       end
     end
+
   end
 end

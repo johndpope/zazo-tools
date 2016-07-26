@@ -1,7 +1,8 @@
 require 'aws-sdk'
 
 module Zazo
-  module Tools
+  module Tool
+
     #
     # Component to dispatching events to AWS SQS worker
     #
@@ -82,5 +83,6 @@ module Zazo
         end
       end
     end
+
   end
 end

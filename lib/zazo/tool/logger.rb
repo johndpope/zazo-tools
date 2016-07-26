@@ -1,7 +1,8 @@
-require 'zazo/tools/logger/http'
+require 'zazo/tool/logger/http'
 
 module Zazo
-  module Tools
+  module Tool
+
     #
     # Component for logging to different sources
     #
@@ -110,5 +111,6 @@ module Zazo
         end
       end
     end
+
   end
 end

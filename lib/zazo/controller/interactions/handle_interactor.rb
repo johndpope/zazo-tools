@@ -1,8 +1,8 @@
-require 'zazo/tools/logger'
+require 'zazo/tool/logger'
 
 module Zazo
-  module Tools
-    module ApiController
+  module Controller
+    module Interactions
 
       class HandleInteractor
         attr_reader :context, :interactor, :type, :settings, :callback,
@@ -60,7 +60,7 @@ module Zazo
           _response     = "response: #{response.to_json};"
           _inputs       = "inputs: #{interactor.inputs.to_json};"
 
-          Zazo::Tools::Logger.info(context,
+          Zazo::Tool::Logger.info(context,
             "#{_interactor} #{_status} #{_current_user} #{_inputs} #{_response}")
         end
 
