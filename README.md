@@ -52,6 +52,48 @@ class Api::V1::ThingsController::Index < ActiveInteraction::Base
 end
 ```
 
+### Zazo::Model::Decorator
+
+This simple component allows to decorate model with multiple decorators.
+
+``` ruby
+# app/model/user.rb
+class User
+  include Zazo::Model::Decorator::Decoratable
+
+  attr_accessor :id, :name
+end
+```
+
+``` ruby
+# app/model/user/decorators/inspector.rb
+class User::Decorators::Inspector < Zazo::Model::Decorator
+  def inspect
+    "user ##{id} with name #{name}"
+  end
+end
+```
+
+``` ruby
+class User::Decorators::Greeter < Zazo::Model::Decorator
+  def greet
+    "Hello! I'm #{name}"
+  end
+end
+```
+
+``` ruby
+user = User.new
+user.id = 666
+user.name = 'Bruce'
+
+user = user.decorate_with(:inspector, :greeter)
+
+user.greet # => "Hello! I'm Bruce"
+user.inspect # => "user #666 with name Bruce"
+user.model.inspect # => "#<Userd:0x007ff529d515d0 @id=666, @name=\"Bruce\">"
+```
+
 ### Zazo::Middleware::RequestDocs
 
 This rack middleware returns static files (e.g. api documentation) bypassing rails stack. It works with basic authentication and returns files from `docs` folder.
