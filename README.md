@@ -93,3 +93,21 @@ class Api::V1::ThingsController::Index < ActiveInteraction::Base
 end
 ```
 
+### Zazo::Tools::Middleware::RequestDocs
+
+This rack middleware returns static files (e.g. api documentation) bypassing rails stack. It works with basic authentication and returns files from `docs` folder.
+You can override default credentials (docs:password) for basic auth via `http_documentation_username` and `http_documentation_password` environment variables.
+
+``` ruby
+# config/application.rb
+.....
+.....
+module ZazoApp
+  class Application < Rails::Application
+    .....
+    .....
+    .....
+    config.middleware.insert 0, Zazo::Tools::Middleware::RequestDocs
+  end
+end
+```
