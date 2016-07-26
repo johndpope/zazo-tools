@@ -1,5 +1,14 @@
 # Zazo Tools
 
+## Installation
+
+Add this line to `Gemfile`.
+```
+gem 'zazo-tools', github: 'noplanb/zazo-tools', tag: '0.3.0-wip.6', require: 'zazo'
+```
+
+## Description
+
 ### Zazo::Controller::Interactions
 
 ``` ruby

@@ -1,6 +1,7 @@
 # Changelog
 
 ### 0.3.0-wip.6
+- :arrow_up: Added installation section to readme
 - :hammer: Fixed readme instructions
 
 ### 0.3.0-wip.5
