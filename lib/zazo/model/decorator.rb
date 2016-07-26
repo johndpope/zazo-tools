@@ -4,7 +4,7 @@ module Zazo
     class Decorator < SimpleDelegator
       class DecoratorNotExist < Exception; end
 
-      module Extension
+      module Decoratable
         def self.included(base)
           base.extend(ClassMethods)
         end
