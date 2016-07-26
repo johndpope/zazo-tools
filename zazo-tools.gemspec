@@ -19,6 +19,8 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency 'pry'
 
   spec.add_runtime_dependency 'rails'
+  spec.add_runtime_dependency 'faraday_middleware'
+  spec.add_runtime_dependency 'faraday-digestauth'
   spec.add_runtime_dependency 'aws-sdk'
   spec.add_runtime_dependency 'active_interaction'
 end

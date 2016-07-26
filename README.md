@@ -4,7 +4,7 @@
 
 ``` ruby
 # app/controllers/api_controller.rb
-class class ApiController < ActionController::Base
+class ApiController < ActionController::Base
   include Zazo::Controller::Interactions
   
   attr_reader :current_user # current_user will be passed to interactor as user
@@ -114,7 +114,7 @@ module ZazoApp
 end
 ```
 
-### Zazo::Tools::EventDispatcher
+### Zazo::Tool::EventDispatcher
 
 Before configuration you should setup **AWS_REGION** (e.g. us-west-1) environment variable.
 
@@ -133,7 +133,7 @@ Zazo::Tools::EventDispatcher.enable_send_message!
 Zazo::Tools::EventDispatcher.disable_send_message!
 ```
 
-### Zazo::Tools::Logger
+### Zazo::Tool::Logger
 
 ``` ruby
 # config/initializers/zazo_logger.rb
@@ -149,8 +149,37 @@ end
 ```
 
 ``` ruby
-# usage
 Zazo::Tools::Logger.info(Object, 'what happens?')
 Zazo::Tools::Logger.debug(Object, 'debugging information')
 Zazo::Tools::Logger.error(Object, 'something was wrong', rollbar: true)
 ```
+
+### Zazo::Tool::Classifier
+
+Build class by array of parts.
+
+``` ruby
+Zazo::Tool::Classifier.new([:zazo, :tool, :classifier]).klass == Zazo::Tool::Classifier # => true
+```
+
+### Zazo::Tool::ServiceApiWrapper
+
+``` ruby
+# lib/some_service_api.rb
+class SomeServiceApi < Zazo::Tool::ServiceApiWrapper
+  version  1
+  base_uri 'http://some-service.dev'
+  digest_auth 'client', 'token'
+
+  mapper filter:  { action: :get,  prefix: 'fetch/filters' },
+         create:  { action: :post },
+         default: { action: :get, prefix: '' }
+end
+```
+
+``` ruby
+SomeServiceApi.new.filter(:users)  # GET "http://some-service.dev/api/v1/fetch/filters/users"
+SomeServiceApi.new.filter(:groups) # GET "http://some-service.dev/api/v1/fetch/filters/groups"
+SomeServiceApi.new(some: 'some', params: 'params').create(:users) # POST "http://some-service.dev/api/v1/users" with params
+```
+
