@@ -19,4 +19,5 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency 'pry'
 
   spec.add_runtime_dependency 'aws-sdk'
+  spec.add_runtime_dependency 'active_interaction'
 end
