@@ -1,5 +1,8 @@
 # Changelog
 
+### 0.3.0-wip.5
+- :arrow_up: Added classifier and service_api_wrapper components
+
 ### 0.3.0-wip.4
 - :arrow_up: Rearranged code structure (backward compatibility is broken)
 
