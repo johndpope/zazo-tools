@@ -178,8 +178,12 @@ end
 ```
 
 ``` ruby
-SomeServiceApi.new.filter(:users)  # GET "http://some-service.dev/api/v1/fetch/filters/users"
-SomeServiceApi.new.filter(:groups) # GET "http://some-service.dev/api/v1/fetch/filters/groups"
-SomeServiceApi.new(some: 'some', params: 'params').create(:users) # POST "http://some-service.dev/api/v1/users" with params
-```
+# GET http://some-service.dev/api/v1/fetch/filters/users
+SomeServiceApi.new.filter(:users)  
 
+# GET http://some-service.dev/api/v1/fetch/filters/groups
+SomeServiceApi.new.filter(:groups)
+
+# POST http://some-service.dev/api/v1/users with body params
+SomeServiceApi.new(some: 'some', params: 'params').create(:users) 
+```
