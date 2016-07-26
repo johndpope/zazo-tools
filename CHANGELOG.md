@@ -1,5 +1,8 @@
 # Changelog
 
+### 0.3.0-wip.2
+- :bulb: Added `RequestDocs` rack middleware
+
 ### 0.3.0-wip.1
 - :bulb: Implemented `ApiController` module
 
