@@ -1,5 +1,8 @@
 # Changelog
 
+### 0.3.0-wip.3
+- :bulb: Added Model::Decorator class with extension
+
 ### 0.3.0-wip.2
 - :bulb: Added `RequestDocs` rack middleware
 
