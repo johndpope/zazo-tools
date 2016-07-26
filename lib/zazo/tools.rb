@@ -2,6 +2,7 @@ require 'zazo/tools/event_dispatcher'
 require 'zazo/tools/api_controller'
 require 'zazo/tools/logger'
 require 'zazo/tools/middleware'
+require 'zazo/tools/model'
 require 'zazo/tools/version'
 
 require 'active_interaction'
