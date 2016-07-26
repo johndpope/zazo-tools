@@ -1,6 +1,6 @@
 # Changelog
 
-### 0.3.0-wip.3
+### 0.3.0-wip.4
 - :arrow_up: Rearranged code structure (backward compatibility is broken)
 
 ### 0.3.0-wip.3
