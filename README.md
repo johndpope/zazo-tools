@@ -4,7 +4,7 @@
 
 Add this line to `Gemfile`.
 ```
-gem 'zazo-tools', github: 'noplanb/zazo-tools', tag: '0.3.0-wip.6', require: 'zazo'
+gem 'zazo-tools', github: 'noplanb/zazo-tools', tag: '1.0.0', require: 'zazo'
 ```
 
 ## Description
