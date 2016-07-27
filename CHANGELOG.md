@@ -1,20 +1,29 @@
 # Changelog
 
-### v0.3.0
+### 1.0.0
+- :bulb: Added `Zazo::Controller::Interactions` component
+- :bulb: Added `Zazo::Model::Decorator` component
+- :bulb: Added `Zazo::Middleware::RequestDocs` component
+- :bulb: Added `Zazo::Tool::ServiceApiWrapper` component
+- :bulb: Added `Zazo::Tool::Classifier` component
+- :arrow_up: Rearranged code structure (backward compatibility is broken)
+- :arrow_up: Added installation section to readme
+
+### 0.3.0
 - :bulb: Changed logstash logging from UDP to HTTP
 
-### v0.2.1
+### 0.2.1
 - :hammer: Added environment variable to logstash logger
 
-### v0.2.0
+### 0.2.0
 - :bulb: Implemented `Logger` component
 - :arrow_up: Refactored configuration of `EventDispatcher`
 
-### v0.1.2
+### 0.1.2
 - :hammer: Fixed `EventDispatcher` component loading
 
-### v0.1.1
+### 0.1.1
 - :hammer: Moved `aws-sdk` from development dependency to production
 
-### v0.1.0
+### 0.1.0
 - :bulb: Added `EventDispatcher` component

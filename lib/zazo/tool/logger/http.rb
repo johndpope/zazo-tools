@@ -3,7 +3,7 @@ require 'thread'
 require 'timeout'
 
 module Zazo
-  module Tools
+  module Tool
     class Logger
 
       class Http

@@ -1,7 +1,8 @@
-require 'zazo/tools/logger/http'
+require 'zazo/tool/logger/http'
 
 module Zazo
-  module Tools
+  module Tool
+
     #
     # Component for logging to different sources
     #
@@ -27,7 +28,7 @@ module Zazo
         end
 
         def set_logstash_logger
-          @logstash_logger = Zazo::Tools::Logger::Http.new(
+          @logstash_logger = Zazo::Tool::Logger::Http.new(
             self.logstash_host, self.logstash_port,
             auth: { username: self.logstash_username,
                     password: self.logstash_password })
@@ -110,5 +111,6 @@ module Zazo
         end
       end
     end
+
   end
 end
