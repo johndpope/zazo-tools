@@ -1,5 +1,8 @@
 # Changelog
 
+### 0.3.0-wip.7
+- :hammer: Fixed ServiceApiWrapper component
+
 ### 0.3.0-wip.6
 - :arrow_up: Added installation section to readme
 - :hammer: Fixed readme instructions

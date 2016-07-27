@@ -1,4 +1,4 @@
-require 'faraday'
+require 'faraday_middleware'
 require 'faraday/digestauth'
 
 module Zazo
@@ -68,9 +68,9 @@ module Zazo
           c.request(:json)
           c.response(:json, content_type: /\bjson$/)
           c.response(:raise_error) if raise_errors?
-          c.adapter(Faraday.default_adapter)
           credentials = auth_credentials(:token)
-          credentials && c.request(:digest, auth_credentials(:name), credentials)
+          c.request(:digest, auth_credentials(:name), credentials) if credentials
+          c.adapter(Faraday.default_adapter)
         end
       end
 
