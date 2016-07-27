@@ -1,26 +1,13 @@
 # Changelog
 
-### 0.3.0-wip.7
-- :hammer: Fixed ServiceApiWrapper component
-
-### 0.3.0-wip.6
-- :arrow_up: Added installation section to readme
-- :hammer: Fixed readme instructions
-
-### 0.3.0-wip.5
-- :arrow_up: Added classifier and service_api_wrapper components
-
-### 0.3.0-wip.4
+### 1.0.0
+- :bulb: Added `Zazo::Controller::Interactions` component
+- :bulb: Added `Zazo::Model::Decorator` component
+- :bulb: Added `Zazo::Middleware::RequestDocs` component
+- :bulb: Added `Zazo::Tool::ServiceApiWrapper` component
+- :bulb: Added `Zazo::Tool::Classifier` component
 - :arrow_up: Rearranged code structure (backward compatibility is broken)
-
-### 0.3.0-wip.3
-- :bulb: Added Model::Decorator class with extension
-
-### 0.3.0-wip.2
-- :bulb: Added `RequestDocs` rack middleware
-
-### 0.3.0-wip.1
-- :bulb: Implemented `ApiController` module
+- :arrow_up: Added installation section to readme
 
 ### 0.3.0
 - :bulb: Changed logstash logging from UDP to HTTP
